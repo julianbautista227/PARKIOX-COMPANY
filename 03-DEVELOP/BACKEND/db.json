@@ -31,6 +31,24 @@
       "id": 6
     }
   ],
+
+  "roles": [
+  { "id": 1, "nombre": "administrador" },
+  { "id": 2, "nombre": "cliente" }
+],
+"tipo-vehiculos": [
+  { "id": 1, "nombre_tipo": "Automóvil" },
+  { "id": 2, "nombre_tipo": "Motocicleta" }
+],
+"metodos": [
+  { "id": 1, "nombre": "Efectivo" },
+  { "id": 2, "nombre": "Tarjeta de crédito" }
+],
+"estados-reserva": [
+  { "id": 1, "nombre_estado": "Confirmada" },
+  { "id": 2, "nombre_estado": "Cancelada" }
+],
+
   "tipo-documentos": [
     {
       "sigla": "CC",

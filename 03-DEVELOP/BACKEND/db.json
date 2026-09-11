@@ -1,19 +1,102 @@
 {
-  "posts": [
+  "users": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "email": "olivier@mail.com",
+      "password": "$2a$10$pqbsYS4WKcR3zYDFPufZ7O/X1TlQ2Ssy1uQt/kv9wjbfG8MlP31Zi",
+      "id": 1
+    },
+    {
+      "email": "pepito@gmail.com",
+      "password": "$2a$10$kO1exe5YAj8zWwEGlN1XUu1.e9kbex4NCUvHc5JCOzY8xL5l4S0gy",
+      "id": 2
+    },
+    {
+      "email": "olivierUUUU@mail.com",
+      "password": "$2a$10$eVfsuKqqNl3ziJ59QCtgj.sFHtiIkHOwneXDeK6K3yY50lC3aNFAG",
+      "id": 3
+    },
+    {
+      "email": "pepe@gmail.com",
+      "password": "$2a$10$eaKGowBzkC8vlG8QguWjrubhQSSRHVH.jddZlpgYy/yMBLx5Q0Z6m",
+      "id": 4
+    },
+    {
+      "email": "julioooo@mail.com",
+      "password": "$2a$10$T/PgeOBhBjcT7TFhMGShMOaA4q8Hn4l8U7gNcGQoRAkEFapIYKmNq",
+      "id": 5
+    },
+    {
+      "email": "OVI@mail.com",
+      "password": "$2a$10$G42cCGoJUoCrROyT350kyOo8RAfXNl8FqTxtmJok4qrGCZOckL5RS",
+      "id": 6
     }
   ],
-  "comments": [
+  "tipo-documentos": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "sigla": "CC",
+      "nombre_documento": "cédula de ciudadanía",
+      "id": 1
+    },
+    {
+      "sigla": "TI",
+      "nombre_documento": "tarjeta de identidad",
+      "id": 2
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "jornada": [
+    {
+      "id": 1,
+      "sigla_jornada": "D",
+      "nombre_jornada": "Jornada Diurna",
+      "descripcion": "lunes a viernes de 6:00 a.m. a 6:00 p.m.",
+      "imagen_url": null,
+      "estado": "ACTIVO"
+    },
+    {
+      "id": 2,
+      "sigla_jornada": "N",
+      "nombre_jornada": "Jornada nocturna",
+      "descripcion": "lunes a viernes de 6:00 p.m. a 10:00 p.m.",
+      "imagen_url": null,
+      "estado": "INACTIVO"
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre_producto": "algo"
+    },
+    {
+      "nombre_producto": "afgfgdfsg",
+      "id": 2
+    },
+    {
+      "nombre_producto": "sdfgsdfg",
+      "id": 3
+    },
+    {
+      "nombre_producto": "coca cola",
+      "id": 4
+    },
+    {
+      "nombre_producto": "coca cola",
+      "id": 5
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre_cliente": "Juan Perez",
+      "tipo_documento": "CC",
+      "numero_documento": "123456789",
+      "correo_electronico": "juan.perez@email.com"
+    },
+    {
+      "nombre_cliente": "dfdsaf",
+      "tipo_documento": "a345",
+      "numero_documento": "fasdfasdf",
+      "correo_electronico": "asdfadsf@gmail.com",
+      "id": 2
+    }
+  ]
 }

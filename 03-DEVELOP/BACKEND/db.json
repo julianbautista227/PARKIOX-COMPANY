@@ -33,8 +33,8 @@
   ],
   "tipo-documentos": [
     {
-      "sigla": "CB",
-      "nombre_documento": "cédula boyacenceeeeeee",
+      "sigla": "CC",
+      "nombre_documento": "cédula de ciudadanía",
       "id": 1
     },
     {
@@ -46,6 +46,11 @@
       "sigla": "CB",
       "nombre_documento": "cédula boyacence",
       "id": 3
+    },
+    {
+      "sigla": "CE",
+      "nombre_documento": "Cedula de extranjeria ",
+      "id": 4
     }
   ],
   "roles": [
@@ -60,6 +65,10 @@
     {
       "nombre": "supervisor",
       "id": 3
+    },
+    {
+      "nombre": "celador ",
+      "id": 4
     }
   ],
   "tipo-vehiculos": [
@@ -74,6 +83,10 @@
     {
       "nombre_tipo": "Camioneta",
       "id": 3
+    },
+    {
+      "nombre_tipo": "camion ",
+      "id": 4
     }
   ],
   "metodos": [
@@ -88,6 +101,10 @@
     {
       "nombre": "Transferencia",
       "id": 3
+    },
+    {
+      "nombre": "nequi",
+      "id": 4
     }
   ],
   "estados-reserva": [

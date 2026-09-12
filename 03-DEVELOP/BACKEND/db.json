@@ -31,24 +31,6 @@
       "id": 6
     }
   ],
-
-  "roles": [
-  { "id": 1, "nombre": "administrador" },
-  { "id": 2, "nombre": "cliente" }
-],
-"tipo-vehiculos": [
-  { "id": 1, "nombre_tipo": "Automóvil" },
-  { "id": 2, "nombre_tipo": "Motocicleta" }
-],
-"metodos": [
-  { "id": 1, "nombre": "Efectivo" },
-  { "id": 2, "nombre": "Tarjeta de crédito" }
-],
-"estados-reserva": [
-  { "id": 1, "nombre_estado": "Confirmada" },
-  { "id": 2, "nombre_estado": "Cancelada" }
-],
-
   "tipo-documentos": [
     {
       "sigla": "CC",
@@ -61,60 +43,60 @@
       "id": 2
     }
   ],
-  "jornada": [
+  "roles": [
     {
       "id": 1,
-      "sigla_jornada": "D",
-      "nombre_jornada": "Jornada Diurna",
-      "descripcion": "lunes a viernes de 6:00 a.m. a 6:00 p.m.",
-      "imagen_url": null,
-      "estado": "ACTIVO"
+      "nombre": "admin generalitoo"
     },
     {
       "id": 2,
-      "sigla_jornada": "N",
-      "nombre_jornada": "Jornada nocturna",
-      "descripcion": "lunes a viernes de 6:00 p.m. a 10:00 p.m.",
-      "imagen_url": null,
-      "estado": "INACTIVO"
+      "nombre": "cliente"
+    },
+    {
+      "nombre": "supervisor",
+      "id": 3
     }
   ],
-  "productos": [
+  "tipo-vehiculos": [
     {
       "id": 1,
-      "nombre_producto": "algo"
+      "nombre_tipo": "Automóvil particular"
     },
     {
-      "nombre_producto": "afgfgdfsg",
-      "id": 2
+      "id": 2,
+      "nombre_tipo": "Motocicleta"
     },
     {
-      "nombre_producto": "sdfgsdfg",
+      "nombre_tipo": "Camioneta",
+      "id": 3
+    }
+  ],
+  "metodos": [
+    {
+      "id": 1,
+      "nombre": "Pago en efectivo"
+    },
+    {
+      "id": 2,
+      "nombre": "Tarjeta de crédito"
+    },
+    {
+      "nombre": "Transferencia",
+      "id": 3
+    }
+  ],
+  "estados-reserva": [
+    {
+      "id": 2,
+      "nombre_estado": "Confirmada"
+    },
+    {
+      "nombre_estado": "Pendiente",
       "id": 3
     },
     {
-      "nombre_producto": "coca cola",
-      "id": 4
-    },
-    {
-      "nombre_producto": "coca cola",
-      "id": 5
-    }
-  ],
-  "clientes": [
-    {
-      "id": 1,
-      "nombre_cliente": "Juan Perez",
-      "tipo_documento": "CC",
-      "numero_documento": "123456789",
-      "correo_electronico": "juan.perez@email.com"
-    },
-    {
-      "nombre_cliente": "dfdsaf",
-      "tipo_documento": "a345",
-      "numero_documento": "fasdfasdf",
-      "correo_electronico": "asdfadsf@gmail.com",
-      "id": 2
+      "nombre_estado": "Cancelada",
+      "id": 1
     }
   ]
 }

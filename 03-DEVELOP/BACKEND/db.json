@@ -33,14 +33,19 @@
   ],
   "tipo-documentos": [
     {
-      "sigla": "CC",
-      "nombre_documento": "cédula de ciudadanía",
+      "sigla": "CB",
+      "nombre_documento": "cédula boyacenceeeeeee",
       "id": 1
     },
     {
       "sigla": "TI",
       "nombre_documento": "tarjeta de identidad",
       "id": 2
+    },
+    {
+      "sigla": "CB",
+      "nombre_documento": "cédula boyacence",
+      "id": 3
     }
   ],
   "roles": [

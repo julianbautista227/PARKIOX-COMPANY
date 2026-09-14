@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "json para presentar nuestro proyecto a los jurados",
+  "description": " Nuestro json para presentar nuestro proyecto",
   "main": "index.js",
   "scripts": {
     "start": "npx json-server --watch db.json -m ./node_modules/json-server-auth"

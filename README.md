@@ -1,1 +1,6 @@
 # PARKIOX-COMPANY
+## SQL
+### FRONTED
+### DDL
+### DML
+### TCL

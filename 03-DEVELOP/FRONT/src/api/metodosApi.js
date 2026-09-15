@@ -1,4 +1,5 @@
-import axiosClient from "./axiosClient";
+
+import { axiosClient } from "./axiosClient";
 
 const metodosApi = {
   list: () => axiosClient.get("/metodos"),

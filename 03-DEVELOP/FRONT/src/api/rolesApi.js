@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient";
+import { axiosClient } from "./axiosClient";
 
 const rolesApi = {
   list: () => axiosClient.get("/roles"),

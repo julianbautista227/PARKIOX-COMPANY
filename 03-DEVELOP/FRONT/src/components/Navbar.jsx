@@ -1,9 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("accessToken"));
+
+  useEffect(() => {
+    setIsAuth(!!localStorage.getItem("accessToken"));
+  }, [location]);
+
   const logout = () => {
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
-    window.location.href = "/";
+    setIsAuth(false);
+    navigate("/login");
   };
 
   const linkStyle = {
@@ -22,6 +33,8 @@ export default function Navbar() {
         borderBottom: "1px solid #2a2f3a",
         fontFamily: "sans-serif",
         background: "#171a21",
+        flexWrap: "wrap",
+        gap: 12,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -29,26 +42,47 @@ export default function Navbar() {
       </div>
 
       <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
-        <Link style={linkStyle} to="/tipo-documentos">Tipo Documentos</Link>
-        <Link style={linkStyle} to="/roles">Roles</Link>
-        <Link style={linkStyle} to="/tipo-vehiculos">Tipo Vehículos</Link>
-        <Link style={linkStyle} to="/metodos">Métodos</Link>
-        <Link style={linkStyle} to="/estados-reserva">Estados Reserva</Link>
+        <Link style={linkStyle} to="/">Inicio</Link>
+
+        {!isAuth && (
+          <>
+            <Link style={linkStyle} to="/login">Login</Link>
+            <Link style={linkStyle} to="/register">Registro</Link>
+          </>
+        )}
+
+        {isAuth && (
+          <>
+            <Link style={linkStyle} to="/tipo-documentos">Tipo Documentos</Link>
+            <Link style={linkStyle} to="/roles">Roles</Link>
+            <Link style={linkStyle} to="/tipo-vehiculos">Tipo Vehículos</Link>
+            <Link style={linkStyle} to="/metodos">Métodos</Link>
+            <Link style={linkStyle} to="/estados-reserva">Estados Reserva</Link>
+          </>
+        )}
       </div>
 
-      <button
-        onClick={logout}
-        style={{
-          background: "transparent",
-          border: "1px solid #2a2f3a",
-          color: "#f2f3f5",
-          borderRadius: 8,
-          padding: "6px 14px",
-          cursor: "pointer",
-        }}
-      >
-        Salir
-      </button>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <span style={{ color: "#9aa1ac", fontSize: "0.85rem" }}>
+          {isAuth ? "Autenticado" : "No autenticado"}
+        </span>
+
+        {isAuth && (
+          <button
+            onClick={logout}
+            style={{
+              background: "transparent",
+              border: "1px solid #2a2f3a",
+              color: "#f2f3f5",
+              borderRadius: 8,
+              padding: "6px 14px",
+              cursor: "pointer",
+            }}
+          >
+            Salir
+          </button>
+        )}
+      </div>
     </nav>
   );
 }

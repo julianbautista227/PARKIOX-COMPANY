@@ -12,3 +12,13 @@ create table login.estado_usuario (
 );
 
 comment on table login.estado_usuario is 'Catálogo de estados de un usuario dentro del sistema';
+
+-- Rol
+create table login.rol (
+    id      SERIAL       not null,
+    nombre  VARCHAR(50)  not null,
+    constraint pk_rol PRIMARY KEY (id),
+    constraint uc_rol_nombre UNIQUE (nombre)
+);
+
+comment on table login.rol is 'Catálogo de roles disponibles: Arrendatario, Arrendador, Administrador';

@@ -34,6 +34,11 @@
       "email": "prueba@mail.com",
       "password": "$2a$10$VryXK6B3PpJsM4RRlYOHFeKoFUry/u3OeT4R44qW7fUqGjpvYF9Ca",
       "id": 7
+    },
+    {
+      "email": "julian@gmail.com",
+      "password": "$2a$10$/QcCb7syki6yddFAOIUGkuK4qMk9AZmOajrMpOIbxgUtkmcnkx7Ia",
+      "id": 8
     }
   ],
   "tipo-documentos": [
@@ -54,28 +59,11 @@
     },
     {
       "sigla": "CC",
-      "nombre_documento": "cedula de ciudadania ",
-      "id": 5
+      "nombre_documento": "cédula de ciudadania",
+      "id": 6
     }
   ],
-  "roles": [
-    {
-      "id": 1,
-      "nombre": "admin generalitoo"
-    },
-    {
-      "id": 2,
-      "nombre": "cliente"
-    },
-    {
-      "nombre": "supervisor",
-      "id": 3
-    },
-    {
-      "nombre": "celador ",
-      "id": 4
-    }
-  ],
+ 
   "tipo-vehiculos": [
     {
       "id": 1,

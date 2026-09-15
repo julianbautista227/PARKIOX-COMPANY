@@ -54,7 +54,6 @@ export default function Navbar() {
         {isAuth && (
           <>
             <Link style={linkStyle} to="/tipo-documentos">Tipo Documentos</Link>
-            <Link style={linkStyle} to="/roles">Roles</Link>
             <Link style={linkStyle} to="/tipo-vehiculos">Tipo Vehículos</Link>
             <Link style={linkStyle} to="/metodos">Métodos</Link>
             <Link style={linkStyle} to="/estados-reserva">Estados Reserva</Link>

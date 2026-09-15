@@ -62,7 +62,6 @@ export default function Login() {
             <div className="field">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <label>Contraseña</label>
-                <Link to="/forgot-password" className="link-inline">¿Olvidaste tu contraseña?</Link>
               </div>
               <input
                 className="input"

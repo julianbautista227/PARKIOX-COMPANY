@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { axiosClient } from "../api/axiosClient";
+import { useNavigate, Link } from "react-router-dom";
+import authApi from "../api/authApi";
 
 export default function Login() {
-  const [email, setEmail] = useState("olivier@mail.com");
-  const [password, setPassword] = useState("bestPassw0rd");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,22 +15,14 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await axiosClient.post("/login", { email, password });
-
-      // res.data = { accessToken, user: { email, id } }
+      const res = await authApi.login({ email, password });
       const { accessToken, user } = res.data;
 
-      // Guardar token (y opcionalmente el usuario)
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // Ejemplo: redireccionar o marcar estado de autenticación
-      // navigate("/dashboard");
-
-      alert(`Login OK. Bienvenido ${user.email}`);
-      window.location.href = "/"; // simple y efectivo  
+      navigate("/tipo-documentos");
     } catch (err) {
-      // Manejo típico de error Axios
       const msg =
         err?.response?.data?.message ||
         err?.response?.statusText ||
@@ -41,36 +35,58 @@ export default function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 420, margin: "40px auto", fontFamily: "sans-serif" }}>
-      <h2>Login</h2>
+    <div className="auth-wrap">
+      <div className="auth-box">
+        <Link to="/" className="back-link">← Volver al Inicio</Link>
 
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          style={{ width: "100%", padding: 8, margin: "6px 0 12px" }}
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="email"
-        />
+        <div className="brand-block">
+          <h1 className="brand-title">PARKIOX</h1>
+          <p className="brand-subtitle">Inicia sesión en tu cuenta</p>
+        </div>
 
-        <label>Password</label>
-        <input
-          style={{ width: "100%", padding: 8, margin: "6px 0 12px" }}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
+        <div className="card auth-card">
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div className="field">
+              <label>Correo electrónico</label>
+              <input
+                className="input"
+                type="email"
+                placeholder="tu@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                required
+              />
+            </div>
 
-        {error ? (
-          <div style={{ color: "crimson", marginBottom: 12 }}>{error}</div>
-        ) : null}
+            <div className="field">
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <label>Contraseña</label>
+                <Link to="/forgot-password" className="link-inline">¿Olvidaste tu contraseña?</Link>
+              </div>
+              <input
+                className="input"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+              />
+            </div>
 
-        <button disabled={loading} type="submit" style={{ width: "100%", padding: 10 }}>
-          {loading ? "Entrando..." : "Entrar"}
-        </button>
-      </form>
+            {error && <div className="status-msg status-error">{error}</div>}
+
+            <button className="btn btn-primary" type="submit" disabled={loading}>
+              {loading ? "Entrando..." : "Iniciar Sesión"}
+            </button>
+          </form>
+
+          <div className="status-msg" style={{ marginTop: 16, textAlign: "center" }}>
+            ¿No tienes cuenta? <Link to="/register" className="link-inline">Regístrate</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

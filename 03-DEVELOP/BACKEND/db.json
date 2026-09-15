@@ -29,14 +29,14 @@
       "email": "OVI@mail.com",
       "password": "$2a$10$G42cCGoJUoCrROyT350kyOo8RAfXNl8FqTxtmJok4qrGCZOckL5RS",
       "id": 6
+    },
+    {
+      "email": "prueba@mail.com",
+      "password": "$2a$10$VryXK6B3PpJsM4RRlYOHFeKoFUry/u3OeT4R44qW7fUqGjpvYF9Ca",
+      "id": 7
     }
   ],
   "tipo-documentos": [
-    {
-      "sigla": "CC",
-      "nombre_documento": "cédula de ciudadanía",
-      "id": 1
-    },
     {
       "sigla": "TI",
       "nombre_documento": "tarjeta de identidad",
@@ -51,6 +51,11 @@
       "sigla": "CE",
       "nombre_documento": "Cedula de extranjeria ",
       "id": 4
+    },
+    {
+      "sigla": "CC",
+      "nombre_documento": "cedula de ciudadania ",
+      "id": 5
     }
   ],
   "roles": [
@@ -87,6 +92,10 @@
     {
       "nombre_tipo": "camion ",
       "id": 4
+    },
+    {
+      "nombre_tipo": "trimoto ",
+      "id": 5
     }
   ],
   "metodos": [
@@ -105,6 +114,10 @@
     {
       "nombre": "nequi",
       "id": 4
+    },
+    {
+      "nombre": "daviplata ",
+      "id": 5
     }
   ],
   "estados-reserva": [

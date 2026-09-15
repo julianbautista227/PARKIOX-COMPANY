@@ -1,5 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import TipoDocumentosCrud from "./pages/TipoDocumentosCrud";
 import RolesCrud from "./pages/RolesCrud";
 import TipoVehiculosCrud from "./pages/TipoVehiculosCrud";
@@ -11,7 +14,9 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate to="/tipo-documentos" replace />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/tipo-documentos" element={<TipoDocumentosCrud />} />
         <Route path="/roles" element={<RolesCrud />} />
         <Route path="/tipo-vehiculos" element={<TipoVehiculosCrud />} />

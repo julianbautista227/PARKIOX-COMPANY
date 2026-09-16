@@ -32,7 +32,6 @@ export default function Home() {
           ) : (
             <>
               <li><Link to="/tipo-documentos" style={{ color: "var(--primary)" }}>Ir a Tipo Documentos</Link></li>
-              <li><Link to="/roles" style={{ color: "var(--primary)" }}>Ir a Roles</Link></li>
               <li><Link to="/tipo-vehiculos" style={{ color: "var(--primary)" }}>Ir a Tipo Vehículos</Link></li>
               <li><Link to="/metodos" style={{ color: "var(--primary)" }}>Ir a Métodos</Link></li>
               <li><Link to="/estados-reserva" style={{ color: "var(--primary)" }}>Ir a Estados Reserva</Link></li>

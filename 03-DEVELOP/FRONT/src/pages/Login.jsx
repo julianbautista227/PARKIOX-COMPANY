@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import authApi from "../api/authApi";
 
 export default function Login() {
+  // Estados controlados por los campos y por el proceso de autenticacion.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -10,19 +11,26 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    // Evita que el navegador recargue la pagina al enviar el formulario.
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
+      // Envia las credenciales al endpoint /login mediante authApi.
       const res = await authApi.login({ email, password });
+
+      // Extrae el token y los datos del usuario que devuelve el backend.
       const { accessToken, user } = res.data;
 
+      // Guarda la sesion en el navegador para conservar el acceso.
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Lleva al usuario a una pagina protegida despues del login.
       navigate("/tipo-documentos");
     } catch (err) {
+      // Muestra el mensaje mas especifico disponible si la peticion falla.
       const msg =
         err?.response?.data?.message ||
         err?.response?.statusText ||
@@ -30,6 +38,7 @@ export default function Login() {
         "Error desconocido";
       setError(msg);
     } finally {
+      // Finaliza el estado de carga tanto si hay exito como si hay error.
       setLoading(false);
     }
   };

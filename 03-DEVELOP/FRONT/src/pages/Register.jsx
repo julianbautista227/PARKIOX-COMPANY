@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import authApi from "../api/authApi";
 
 export default function Register() {
+  // Estados controlados por el formulario y por el proceso de registro.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,9 +12,11 @@ export default function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    // Evita la recarga automatica de la pagina.
     e.preventDefault();
     setError("");
 
+    // Comprueba localmente que las dos contrasenas sean iguales.
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden");
       return;
@@ -21,14 +24,20 @@ export default function Register() {
 
     setLoading(true);
     try {
+      // Envia al backend solo los datos necesarios para crear la cuenta.
       const res = await authApi.register({ email, password });
+
+      // El backend devuelve la sesion creada y el token de acceso.
       const { accessToken, user } = res.data;
 
+      // Guarda la sesion para usarla en las siguientes peticiones.
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Redirige al usuario una vez finalizado el registro.
       navigate("/tipo-documentos");
     } catch (err) {
+      // Obtiene un mensaje util para mostrarlo en el formulario.
       const msg =
         err?.response?.data?.message ||
         err?.response?.statusText ||
@@ -36,6 +45,7 @@ export default function Register() {
         "Error desconocido";
       setError(msg);
     } finally {
+      // Quita el indicador de carga en cualquier resultado.
       setLoading(false);
     }
   };

@@ -2,8 +2,13 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authApi from "../api/authApi";
 
+/**
+ * Página de registro del usuario.
+ * Valida la contraseña, crea la cuenta en el backend y guarda
+ * la sesión del nuevo usuario para continuar con el sistema.
+ */
 export default function Register() {
-  // Estados controlados por el formulario y por el proceso de registro.
+  // Estados del formulario y flujo de creación de la cuenta.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,12 +16,17 @@ export default function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // El return muestra la interfaz de registro con los campos necesarios
+  // y reutiliza el estado del formulario para validar y enviar la cuenta.
+  /**
+   * Valida la información del formulario y registra al usuario.
+   */
   const handleSubmit = async (e) => {
-    // Evita la recarga automatica de la pagina.
+    // Evita la recarga automática de la página.
     e.preventDefault();
     setError("");
 
-    // Comprueba localmente que las dos contrasenas sean iguales.
+    // Comprueba localmente que las dos contraseñas sean iguales.
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden");
       return;
@@ -27,17 +37,17 @@ export default function Register() {
       // Envia al backend solo los datos necesarios para crear la cuenta.
       const res = await authApi.register({ email, password });
 
-      // El backend devuelve la sesion creada y el token de acceso.
+      // El backend devuelve la sesión creada y el token de acceso.
       const { accessToken, user } = res.data;
 
-      // Guarda la sesion para usarla en las siguientes peticiones.
+      // Guarda la sesión para usarla en las siguientes peticiones.
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(user));
 
       // Redirige al usuario una vez finalizado el registro.
       navigate("/tipo-documentos");
     } catch (err) {
-      // Obtiene un mensaje util para mostrarlo en el formulario.
+      // Obtiene un mensaje útil para mostrarlo en el formulario.
       const msg =
         err?.response?.data?.message ||
         err?.response?.statusText ||

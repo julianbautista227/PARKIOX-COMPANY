@@ -1,18 +1,31 @@
 import { useEffect, useState } from "react";
 import tipoDocumentosApi from "../api/tipoDocumentosApi";
 
+/**
+ * CRUD para administrar los tipos de documento del sistema.
+ * Permite listar, crear, actualizar, eliminar y buscar registros por ID.
+ */
 export default function TipoDocumentosCrud() {
+  // Lista completa de tipos de documento obtenidos del backend.
   const [items, setItems] = useState([]);
+  // Campos del formulario de creación y edición.
   const [sigla, setSigla] = useState("");
   const [nombreDocumento, setNombreDocumento] = useState("");
+  // Búsqueda rápida por ID.
   const [searchId, setSearchId] = useState("");
   const [searchResult, setSearchResult] = useState(null);
+  // Indica si el formulario está en modo edición.
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const isEditing = editingId !== null;
 
+  // El return renderiza la interfaz de gestión de tipos de documento,
+  // conectando el formulario y la tabla con los estados de la vista.
+  /**
+   * Carga la lista de tipos de documento desde el backend.
+   */
   const loadList = async () => {
     setError("");
     setLoading(true);
@@ -26,16 +39,23 @@ export default function TipoDocumentosCrud() {
     }
   };
 
+  // Carga inicial de la información al renderizar la página.
   useEffect(() => {
     loadList();
   }, []);
 
+  /**
+   * Reinicia el formulario y vuelve al modo de creación.
+   */
   const resetForm = () => {
     setSigla("");
     setNombreDocumento("");
     setEditingId(null);
   };
 
+  /**
+   * Crea o actualiza un tipo de documento según el estado del formulario.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!sigla.trim() || !nombreDocumento.trim()) return;
@@ -54,12 +74,18 @@ export default function TipoDocumentosCrud() {
     }
   };
 
+  /**
+   * Selecciona un registro para editarlo en el formulario.
+   */
   const handleEdit = (item) => {
     setEditingId(item.id);
     setSigla(item.sigla);
     setNombreDocumento(item.nombre_documento);
   };
 
+  /**
+   * Elimina un tipo de documento después de confirmar la acción.
+   */
   const handleDelete = async (id) => {
     if (!confirm("¿Eliminar este tipo de documento?")) return;
     try {
@@ -70,6 +96,9 @@ export default function TipoDocumentosCrud() {
     }
   };
 
+  /**
+   * Busca un documento específico por su ID y muestra el resultado.
+   */
   const handleSearch = async () => {
     if (!searchId) return;
     setError("");

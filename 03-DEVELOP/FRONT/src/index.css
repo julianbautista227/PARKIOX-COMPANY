@@ -1,317 +1,422 @@
 /* ══════════════════════════════════════════
-   PARKIOX — Design System unificado
-   Base oscura + acento azul (marca) + amarillo (highlights puntuales)
+   PARKIOX — Design System
+   Concreto negro + amarillo señalética + Archivo
    ══════════════════════════════════════════ */
 
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&display=swap');
+
+/*
+ * Variables globales reutilizadas por todos los componentes.
+ * Permiten cambiar colores, tamaños y sombras desde un solo lugar.
+ */
 :root {
-  /* Superficies */
-  --bg: #0a0b0e;
-  --surface: #14161c;
-  --surface-2: #1b1e26;
-  --card: #16181f;
-  --card2: #101218;
-  --border: #262a35;
-  --border-soft: rgba(251, 191, 36, 0.18);
+  /* Fondos, paneles y líneas que separan los elementos. */
+  --bg: #000000;
+  --surface: #131313;
+  --surface-2: #0a0a0a;
+  --card: #131313;
+  --card2: #0a0a0a;
+  --border: #2a2a2a;
+  --border-soft: rgba(217, 166, 40, 0.2);
 
-  /* Marca / acento */
-  --primary: #fbbf24;
-  --primary-hover: #e5a812;
-  --primary-soft: rgba(251, 191, 36, 0.12);
-  --accent: #fbbf24;
-  --accent-hover: #e5a812;
-  --accent-soft: rgba(251, 191, 36, 0.14);
-  --accent-glow: 0 0 0 1px rgba(251, 191, 36, 0.25), 0 8px 24px rgba(251, 191, 36, 0.15);
+  /* Amarillo de marca y sus variaciones para hover y fondos suaves. */
+  --primary: #d9a628;
+  --primary-hover: #c79420;
+  --primary-soft: rgba(217, 166, 40, 0.14);
+  --accent: #d9a628;
+  --accent-hover: #c79420;
+  --accent-soft: rgba(217, 166, 40, 0.14);
 
-  /* Estados */
+  /* Colores que comunican peligro, error o una operación exitosa. */
   --danger: #e5484d;
   --danger-hover: #c9403f;
   --success: #34d399;
 
-  /* Texto */
-  --text: #f2f3f5;
-  --text-muted: #9aa1ac;
-  --text-faint: #6b7280;
+  /* Colores para texto normal, secundario y de baja importancia. */
+  --text: #f0ece2;
+  --text-muted: #a89f8f;
+  --text-faint: #6b6459;
 
-  /* Utilidad */
-  --radius: 12px;
+  /* Valores reutilizables para bordes, sombras y tipografía. */
+  --radius: 10px;
   --radius-lg: 1rem;
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 0 1px var(--border-soft), 0 8px 24px rgba(251, 191, 36, 0.15);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 0 1px var(--border-soft), 0 8px 24px rgba(217, 166, 40, 0.15);
+  --font: 'Archivo', 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ── Reset básico ── */
+/*
+ * Elimina márgenes y rellenos del navegador.
+ * box-sizing hace que width y height incluyan padding y border.
+ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/*
+ * Configuración general del documento.
+ * min-height ocupa toda la ventana y flex organiza el contenido verticalmente.
+ */
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--font);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* Los enlaces heredan el color y no muestran subrayado por defecto. */
 a { text-decoration: none; color: inherit; }
 
 /* ══════════════════════════════════════════
-   LANDING PAGE
+   NAVBAR
    ══════════════════════════════════════════ */
 
-/* Hero */
-.hero-section {
-  padding: 3rem 1.25rem 2.5rem;
-}
-
-.hero-eyebrow {
-  color: var(--accent);
-  opacity: 0.8;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-}
-
-.hero-title {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.hero-title span {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.hero-desc {
-  color: var(--text-muted);
-  font-size: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  max-width: 24rem;
-}
-
-.hero-buttons {
+.navbar {
+  /*
+   * Barra superior: flex distribuye marca, enlaces y acciones.
+   * sticky la mantiene visible y flex-wrap permite adaptarla a pantallas pequeñas.
+   */
   display: flex;
-  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg);
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
+.navbar-brand {
+  /* Flex coloca el logo y el nombre uno junto al otro. */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.navbar-brand-text {
+  color: var(--text);
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.navbar-links {
+  /* Agrupa los enlaces y deja espacio uniforme entre ellos. */
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  /* Apariencia base de cada enlace antes de pasar el cursor. */
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+/* Aumenta el contraste del enlace cuando el cursor está encima. */
+.nav-link:hover { color: var(--text); }
+
+.nav-link.active {
+  /* Marca la ruta que coincide con la página actual. */
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.navbar-actions {
+  /* Mantiene juntos el indicador de sesión y los botones de acción. */
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.status-dot {
+  /* Indicador circular del estado de conexión del usuario. */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--text-faint);
+  flex-shrink: 0;
+}
+.status-dot.online { background-color: var(--success); }
+
+/* Reduce el tamaño de los botones utilizados dentro de la barra. */
+.btn-sm {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+/* ══════════════════════════════════════════
+   BOTONES (compartidos en toda la app)
+   ══════════════════════════════════════════ */
+
+/* Botón principal utilizado para confirmar o continuar una acción. */
 .btn-primary {
-  background-color: var(--accent);
+  /* El fondo amarillo hace que la acción principal sea fácil de identificar. */
+  background-color: var(--primary);
   color: #000;
   font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
   border: none;
   cursor: pointer;
+  font-family: var(--font);
   transition: background 0.15s, transform 0.15s;
 }
+/* Al pasar el cursor cambia el color y sube un píxel para dar respuesta visual. */
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--primary-hover);
   transform: translateY(-1px);
 }
 
 .btn-outline {
-  border: 1px solid var(--border);
+  /* Acción secundaria: conserva el fondo y destaca solo el borde. */
+  border: 1.5px solid var(--border);
   color: var(--text);
   font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
   background: transparent;
   cursor: pointer;
+  font-family: var(--font);
   transition: border-color 0.15s, color 0.15s;
 }
 .btn-outline:hover {
-  border-color: var(--primary);
+  border-color: var(--text);
+}
+
+.btn-primary-block {
+  /* Variante del botón principal que ocupa todo el ancho disponible. */
+  display: block;
+  text-align: center;
+  background-color: var(--primary);
+  color: #000;
+  font-weight: 700;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: background 0.15s;
+}
+.btn-primary-block:hover { background-color: var(--primary-hover); }
+
+/* ══════════════════════════════════════════
+   HERO (landing, dos columnas)
+   ══════════════════════════════════════════ */
+
+.hero-section {
+  /*
+   * Área inicial de la página pública.
+   * max-width limita el contenido y clamp adapta el espacio al tamaño de pantalla.
+   */
+  position: relative;
+  padding: clamp(40px, 8vw, 90px) clamp(20px, 5vw, 56px) 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-watermark {
+  /* Texto de marca decorativo ubicado detrás del contenido principal. */
+  position: absolute;
+  top: -8px;
+  right: clamp(-10px, 2vw, 30px);
+  font-size: clamp(2.6rem, 7.5vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(240, 236, 226, 0.09);
+  line-height: 1;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-flex {
+  /* Flex organiza texto e imagen; wrap permite apilarlos en pantallas pequeñas. */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* Permite que el bloque de texto se adapte al ancho disponible. */
+.hero-text { flex: 1 1 460px; min-width: 0; }
+
+/* Reserva un ancho controlado para la imagen de la portada. */
+.hero-visual {
+  flex: 0 0 auto;
+  width: clamp(220px, 30vw, 340px);
+}
+.hero-visual img {
+  /* La imagen ocupa el contenedor y conserva su proporción original. */
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-eyebrow {
+  /* Texto introductorio pequeño situado antes del título. */
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.hero-title {
+  /* Título principal de la página de inicio. */
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title span {
   color: var(--primary);
 }
 
-.hero-logo {
-  width: 12rem;
-  height: 12rem;
-  object-fit: contain;
-  opacity: 0.95;
-  display: block;
-  margin: 0 auto;
-  filter: drop-shadow(0 8px 24px rgba(251, 191, 36, 0.25));
-}
-
-.hero-stats {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.stat-number {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--accent);
-}
-
-.stat-label {
+.hero-desc {
+  /* Descripción breve que acompaña al título principal. */
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 1.05rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.8rem;
+  max-width: 34ch;
 }
 
-/* Por qué */
+.hero-buttons {
+  /* Agrupa las acciones principales del hero. */
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  /* En móviles se oculta la marca decorativa para dejar espacio al contenido. */
+  .hero-watermark { display: none; }
+}
+
+/* ══════════════════════════════════════════
+   POR QUÉ (tarjetas tipo letrero)
+   ══════════════════════════════════════════ */
+
 .why-section {
-  background-color: var(--card2);
-  padding: 2.5rem 1.25rem;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  /* Sección que presenta las razones para usar Parkiox. */
+  padding: 2.5rem clamp(20px, 5vw, 56px) 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 900;
   color: var(--text);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.4rem;
 }
 
 .section-subtitle {
   color: var(--text-muted);
-  font-size: 0.875rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
 }
 
 .features-grid {
+  /* Grid crea dos columnas iguales para comparar las características. */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 1.2rem;
 }
 
 .feature-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  padding: 1rem;
+  /* Tarjeta individual con una ventaja del servicio. */
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 1.3rem 1.2rem;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
+.feature-card:nth-child(1) { transform: rotate(-1.2deg); }
+.feature-card:nth-child(2) { transform: rotate(1deg); }
+.feature-card:nth-child(3) { transform: rotate(0.8deg); }
+.feature-card:nth-child(4) { transform: rotate(-0.9deg); }
 .feature-card:hover {
-  border-color: rgba(251, 191, 36, 0.3);
-  box-shadow: var(--accent-glow);
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-glow);
 }
 
-.feature-emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.feature-emoji {
+  /* Área visual que contiene el emoji de cada característica. */
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+}
 
 .feature-card h3 {
   color: var(--text);
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .feature-card p {
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   margin-top: 0.25rem;
 }
 
-/* Perfiles */
-.profiles-section {
-  padding: 2.5rem 1.25rem;
+@media (max-width: 640px) {
+  /* En pantallas estrechas las tarjetas pasan a una sola columna. */
+  .features-grid { grid-template-columns: 1fr; }
 }
 
-.profile-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.15s;
-}
-.profile-card:hover { border-color: var(--accent); }
+/* ══════════════════════════════════════════
+   CTA final
+   ══════════════════════════════════════════ */
 
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.profile-emoji {
-  font-size: 2.5rem;
-  filter: drop-shadow(0 0 12px var(--accent-soft));
-}
-
-.profile-card h3 {
-  color: var(--text);
-  font-weight: 900;
-  font-size: 1.5rem;
-}
-
-.profile-card .profile-type {
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.profile-desc {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  margin-bottom: 1.25rem;
-}
-
-.btn-primary-block {
-  display: block;
-  text-align: center;
-  background-color: var(--accent);
-  color: #000;
-  font-weight: 700;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  transition: background 0.15s;
-}
-.btn-primary-block:hover { background-color: var(--accent-hover); }
-
-/* Vehículos */
-.vehicles-section {
-  background-color: var(--card2);
-  padding: 2.5rem 1.25rem;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.vehicles-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.vehicle-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 9999px;
-  padding: 0.5rem 1rem;
-  color: var(--text);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: border-color 0.15s;
-}
-.vehicle-pill:hover { border-color: var(--accent); }
-
-/* CTA final */
 .cta-section {
-  padding: 3rem 1.25rem;
+  /* Área de llamada a la acción de la página pública. */
+  padding: 3rem clamp(20px, 5vw, 56px);
   text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .cta-eyebrow {
-  color: var(--accent);
+  color: var(--primary);
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -325,112 +430,27 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ══════════════════════════════════════════
-   HOW IT WORKS PAGE
-   ══════════════════════════════════════════ */
-
-.hiw-section {
-  padding: 2.5rem 1.25rem;
-  flex: 1;
-}
-
-.hiw-eyebrow {
-  color: var(--accent);
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.hiw-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--text);
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-}
-
-.hiw-title span {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.hiw-desc {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  margin-bottom: 2.5rem;
-}
-
-.benefit-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.benefit-item {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.benefit-emoji { font-size: 1.125rem; }
-
-.benefit-title {
-  color: var(--text);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.benefit-desc {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-}
-
-/* CTA final HIW */
-.hiw-cta {
-  text-align: center;
-  margin-top: 2.5rem;
-}
-
-.hiw-cta-buttons {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn-outline-rounded {
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  transition: border-color 0.15s, color 0.15s;
-}
-.btn-outline-rounded:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-/* ══════════════════════════════════════════
    CRUD PAGES
    ══════════════════════════════════════════ */
 
 .crud-page {
+  /* Contenedor común: centra el CRUD y limita su ancho para facilitar la lectura. */
   max-width: 960px;
   margin: 0 auto;
   padding: 32px 20px;
+  width: 100%;
 }
 
 .crud-title {
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 24px;
   text-align: center;
   color: var(--text);
 }
 
 .card {
+  /* Cada card separa visualmente una tarea: crear, buscar o listar. */
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -441,12 +461,13 @@ a { text-decoration: none; color: inherit; }
 
 .card-title {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 16px;
   color: var(--text);
 }
 
 .form-row {
+  /* Los campos se colocan en fila y saltan de línea si no hay espacio. */
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -454,6 +475,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .field {
+  /* Cada field apila su etiqueta sobre el input correspondiente. */
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -467,27 +489,32 @@ a { text-decoration: none; color: inherit; }
 }
 
 .input {
+  /* Estilo común para que todos los inputs se vean consistentes. */
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 12px;
   color: var(--text);
+  font-family: var(--font);
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .input:focus {
+  /* El borde y el halo amarillo muestran cuál campo está activo. */
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-soft);
 }
 
 .btn {
+  /* Base común: cursor, tamaño, bordes y animación de todos los botones. */
   border: none;
   border-radius: 8px;
   padding: 10px 18px;
   font-size: 0.9rem;
   font-weight: 600;
+  font-family: var(--font);
   cursor: pointer;
   transition: background 0.15s, opacity 0.15s, transform 0.15s;
 }
@@ -500,18 +527,17 @@ a { text-decoration: none; color: inherit; }
 .btn-danger:hover { background: var(--danger-hover); }
 
 .btn:disabled {
+  /* Indica que una acción no está disponible, por ejemplo durante una carga. */
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.table-wrap {
-  overflow-x: auto;
-}
+/* Permite desplazar horizontalmente la tabla en pantallas pequeñas. */
+/* Si la tabla es más ancha que la pantalla, permite desplazarla horizontalmente. */
+.table-wrap { overflow-x: auto; }
 
-table.crud-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+/* Tabla que muestra los registros obtenidos desde el backend. */
+table.crud-table { width: 100%; border-collapse: collapse; }
 
 .crud-table th {
   text-align: left;
@@ -529,24 +555,19 @@ table.crud-table {
   font-size: 0.95rem;
 }
 
-.crud-table tr:hover td {
-  background: var(--surface-2);
-}
+.crud-table tr:hover td { background: var(--surface-2); }
 
-.actions {
-  display: flex;
-  gap: 8px;
-}
+/* Agrupa los botones de editar y eliminar de cada registro. */
+.actions { display: flex; gap: 8px; }
 
-.status-msg {
-  font-size: 0.85rem;
-  margin-top: 8px;
-}
+/* Mensajes de información, error y carga mostrados en los formularios. */
+.status-msg { font-size: 0.85rem; margin-top: 8px; }
 
 .status-error { color: var(--danger); }
 .status-loading { color: var(--text-muted); }
 
 .badge {
+  /* Etiqueta compacta para mostrar identificadores de registros. */
   display: inline-block;
   background: var(--surface-2);
   border: 1px solid var(--border);
@@ -556,8 +577,12 @@ table.crud-table {
   font-size: 0.75rem;
 }
 
-/* ── Auth pages (Login / Register) ── */
+/* ══════════════════════════════════════════
+   AUTH (Login / Register)
+   ══════════════════════════════════════════ */
+
 .auth-wrap {
+  /* Centra los formularios de login y registro dentro del espacio disponible. */
   min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
@@ -565,12 +590,11 @@ table.crud-table {
   padding: 24px;
 }
 
-.auth-box {
-  width: 100%;
-  max-width: 400px;
-}
+/* Mantiene el formulario legible: ocupa la pantalla en móvil, pero no más de 400px. */
+.auth-box { width: 100%; max-width: 400px; }
 
 .back-link {
+  /* Enlace para regresar a la página inicial. */
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -581,16 +605,15 @@ table.crud-table {
 }
 .back-link:hover { color: var(--primary); }
 
-.brand-block {
-  text-align: center;
-  margin-bottom: 24px;
-}
+/* Agrupa y centra el nombre de la marca sobre el formulario. */
+.brand-block { text-align: center; margin-bottom: 24px; }
 
 .brand-title {
+  /* Nombre de la marca mostrado sobre el formulario. */
   color: var(--text);
   font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
   margin: 0;
 }
 
@@ -601,13 +624,70 @@ table.crud-table {
 }
 
 .auth-card {
+  /* Borde y sombra amarillos identifican el panel activo de autenticación. */
   border-color: var(--primary);
   box-shadow: var(--shadow-glow);
 }
 
 .link-inline {
+  /* Enlace secundario dentro de los mensajes del formulario. */
   color: var(--primary);
   text-decoration: none;
   font-size: 0.8rem;
 }
 .link-inline:hover { text-decoration: underline; }
+
+/* ══════════════════════════════════════════
+   DASHBOARD (Home autenticado)
+   ══════════════════════════════════════════ */
+
+.dashboard-grid {
+  /* Grid de dos columnas para acceder rápidamente a los módulos administrativos. */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.dashboard-card {
+  /* Cada tarjeta funciona como un enlace completo hacia un módulo. */
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.dashboard-card:hover {
+  /* Resalta la tarjeta para indicar que se puede seleccionar. */
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Icono o emoji que identifica visualmente cada módulo. */
+.dashboard-card-emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+.dashboard-card h3 {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-card p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.dashboard-logo-img {
+  /* Imagen de marca centrada sobre el mensaje de bienvenida. */
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+@media (max-width: 640px) {
+  /* En móvil los accesos se muestran uno debajo de otro. */
+  .dashboard-grid { grid-template-columns: 1fr; }
+}

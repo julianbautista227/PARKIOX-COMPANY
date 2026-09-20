@@ -108,6 +108,10 @@ export default function EstadosReservaCrud() {
     }
   };
 
+  // La parte del return devuelve el JSX que React dibuja en pantalla.
+  // Aquí se define la interfaz visual: formulario, buscador, tabla y mensajes,
+  // usando los estados y funciones declarados arriba para que el usuario pueda
+  // crear, editar, buscar y eliminar registros en la pantalla.
   return (
     <div className="crud-page">
       <h1 className="crud-title">Estados de Reserva</h1>

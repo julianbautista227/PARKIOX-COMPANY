@@ -1,5 +1,6 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const location = useLocation();
@@ -17,67 +18,53 @@ export default function Navbar() {
     navigate("/login");
   };
 
-  const linkStyle = {
-    color: "#f2f3f5",
-    textDecoration: "none",
-    fontSize: "0.9rem",
-  };
-
   return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "12px 24px",
-        borderBottom: "1px solid #2a2f3a",
-        fontFamily: "sans-serif",
-        background: "#171a21",
-        flexWrap: "wrap",
-        gap: 12,
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <strong style={{ color: "#f2f3f5" }}>PARKIOX</strong>
-      </div>
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">
+        <img src={logo} alt="Parkiox" className="brand-logo-img" />
+        <span className="navbar-brand-text">PARKIOX</span>
+      </Link>
 
-      <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
-        <Link style={linkStyle} to="/">Inicio</Link>
-
-        {!isAuth && (
-          <>
-            <Link style={linkStyle} to="/login">Login</Link>
-            <Link style={linkStyle} to="/register">Registro</Link>
-          </>
-        )}
+      <div className="navbar-links">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+        >
+          Inicio
+        </NavLink>
 
         {isAuth && (
           <>
-            <Link style={linkStyle} to="/tipo-documentos">Tipo Documentos</Link>
-            <Link style={linkStyle} to="/tipo-vehiculos">Tipo Vehículos</Link>
-            <Link style={linkStyle} to="/metodos">Métodos</Link>
-            <Link style={linkStyle} to="/estados-reserva">Estados Reserva</Link>
+            <NavLink to="/tipo-documentos" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+              Tipo Documentos
+            </NavLink>
+            <NavLink to="/tipo-vehiculos" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+              Tipo Vehículos
+            </NavLink>
+            <NavLink to="/metodos" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+              Métodos
+            </NavLink>
+            <NavLink to="/estados-reserva" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
+              Estados Reserva
+            </NavLink>
           </>
         )}
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <span style={{ color: "#9aa1ac", fontSize: "0.85rem" }}>
+      <div className="navbar-actions">
+        <span className="navbar-status">
+          <span className={`status-dot${isAuth ? " online" : ""}`} />
           {isAuth ? "Autenticado" : "No autenticado"}
         </span>
 
-        {isAuth && (
-          <button
-            onClick={logout}
-            style={{
-              background: "transparent",
-              border: "1px solid #2a2f3a",
-              color: "#f2f3f5",
-              borderRadius: 8,
-              padding: "6px 14px",
-              cursor: "pointer",
-            }}
-          >
+        {!isAuth ? (
+          <>
+            <Link to="/login" className="btn-outline btn-sm">Iniciar Sesión</Link>
+            <Link to="/register" className="btn-primary btn-sm">Registrarse</Link>
+          </>
+        ) : (
+          <button onClick={logout} className="btn-outline btn-sm">
             Salir
           </button>
         )}

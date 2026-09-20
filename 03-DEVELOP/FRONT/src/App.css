@@ -1,3 +1,6 @@
+/* Estilos heredados de la plantilla inicial de Vite. */
+
+/* Contador o indicador numérico con estados visuales de hover y foco. */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -17,6 +20,7 @@
   }
 }
 
+/* Contenedor de la ilustración principal de la plantilla. */
 .hero {
   position: relative;
 
@@ -28,6 +32,7 @@
   }
 
   .base {
+    /* Imagen base centrada detrás de las demás capas. */
     width: 170px;
     position: relative;
     z-index: 0;
@@ -35,10 +40,12 @@
 
   .framework,
   .vite {
+    /* Permite superponer los logotipos sobre la imagen base. */
     position: absolute;
   }
 
   .framework {
+    /* Capa y transformación 3D del logotipo del framework. */
     z-index: 1;
     top: 34px;
     height: 28px;
@@ -47,6 +54,7 @@
   }
 
   .vite {
+    /* Capa y transformación 3D del logotipo de Vite. */
     z-index: 0;
     top: 107px;
     height: 26px;
@@ -56,6 +64,7 @@
   }
 }
 
+/* Centra vertical y horizontalmente el contenido de la plantilla. */
 #center {
   display: flex;
   flex-direction: column;
@@ -70,6 +79,7 @@
   }
 }
 
+/* Organiza las tarjetas o enlaces de próximos pasos. */
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
@@ -95,6 +105,7 @@
   }
 }
 
+/* Separa visualmente la sección de documentación. */
 #docs {
   border-right: 1px solid var(--border);
 
@@ -104,6 +115,7 @@
   }
 }
 
+/* Estilos para la lista de enlaces y sus iconos. */
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -153,6 +165,7 @@
   }
 }
 
+/* Espacio final de la página con adaptación para pantallas pequeñas. */
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
@@ -161,6 +174,7 @@
   }
 }
 
+/* Marcadores triangulares decorativos ubicados en los extremos. */
 .ticks {
   position: relative;
   width: 100%;

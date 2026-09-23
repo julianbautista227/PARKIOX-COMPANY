@@ -833,7 +833,7 @@ VALUES (1, 'APROBADO');
 -- cuenta 1 y al vehículo 1, simulando una modificación de datos del automotor.
 UPDATE vehiculo.cuenta_vehiculo
 SET color = 'Blanco'
-WHERE id_cuenta = 1 AND id_vehiculo = 1;
+WHERE id_cuenta = 1 AND id_vehiculo = 1;.
 
 -- ---------- 5.2 PARQUEADERO —----------
 -- Se reemplaza la URL de una foto de espacio por una nueva versión,

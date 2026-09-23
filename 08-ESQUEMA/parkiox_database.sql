@@ -2,7 +2,7 @@
 -- 1. DROP SCHEMAS
 -- ============================================================
 DROP SCHEMA IF EXISTS login CASCADE;
-DROP SCHEMA IF EXISTS vehiculo CASCADE;
+DROP SCHEMA IF EXISTS vehiculo CASCADE;.
 DROP SCHEMA IF EXISTS parqueadero CASCADE;
 DROP SCHEMA IF EXISTS reservas CASCADE;
 DROP SCHEMA IF EXISTS favoritos CASCADE;

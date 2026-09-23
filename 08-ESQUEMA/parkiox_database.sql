@@ -543,6 +543,102 @@ comment on column historial_resenas.resena.comentario is 'Opinión o feedback te
 comment on column historial_resenas.resena.creado_en is 'Fecha y hora exacta en la que se publicó la reseña';
 
 
+-- ---------- 3.8 PAGOS ----------
+create table pagos.metodos (
+    id SERIAL not null,
+    nombre varchar(50) not null,
+    primary key (id)
+);
+
+comment on table pagos.metodos is 'Catálogo de las diferentes opciones o canales de pago habilitados en la plataforma';
+comment on column pagos.metodos.id is 'Identificador único del método de pago (Llave primaria)';
+comment on column pagos.metodos.nombre is 'Nombre comercial o técnico de la opción (ej. Tarjeta de Crédito, PSE, Efectivo, Nequi)';
+
+create table pagos.pagos (
+	id SERIAL not null,
+	id_reserva int not null,
+	monto decimal(19,0) not null,
+	referencia_externa varchar(100) not null,
+	fecha_de_creacion timestamp not null,
+	procesado_en timestamp not null,
+	comprobante_url varchar(255) null,
+	primary key (id),
+	constraint fk_reserva_pagos foreign key (id_reserva)
+	references reservas.reserva (id)
+);
+
+comment on table pagos.pagos is 'Registra las transacciones monetarias y pasarelas de pago procesadas para liberar o liquidar los servicios del sistema';
+comment on column pagos.pagos.id is 'Identificador único y numérico de la transacción de pago (Llave primaria)';
+comment on column pagos.pagos.id_reserva is 'Llave foránea que conecta el cobro con la reserva correspondiente';
+comment on column pagos.pagos.monto is 'Valor total de dinero transferido u operado en la transacción';
+comment on column pagos.pagos.referencia_externa is 'Código único de seguimiento o comprobación devuelto por la pasarela de pagos externa (ej. MercadoPago, ePayco, Stripe)';
+comment on column pagos.pagos.fecha_de_creacion is 'Fecha y hora en la que se inició o radicó la solicitud de pago';
+comment on column pagos.pagos.procesado_en is 'Sello de tiempo exacto en el que el pago fue aprobado o finalizado';
+comment on column pagos.pagos.comprobante_url is 'Enlace o ruta digital al soporte, voucher o recibo virtual del pago realizado';
+
+create table pagos.pagos_metodos (
+	id_pagos int not null,
+	id_metodos int not null,
+	valor_pagado decimal (19,0),
+	primary key (id_pagos, id_metodos),
+	constraint fk_metodos_pagos_metodos foreign key(id_metodos)
+	references pagos.metodos (id),
+	constraint fk_pagos_pagos_metodos foreign key(id_pagos)
+	references pagos.pagos (id)
+);
+
+comment on table pagos.pagos_metodos is 'Tabla intermedia que mapea qué transacciones de la tabla pagos utilizaron cuáles formas o medios de pago disponibles';
+comment on column pagos.pagos_metodos.id_metodos is 'Identificador del método de pago utilizado (Llave foránea / Primaria compuesta)';
+comment on column pagos.pagos_metodos.id_pagos is 'Identificador de la transacción de pago (Llave foránea / Primaria compuesta)';
+comment on column pagos.pagos_metodos.valor_pagado is 'Monto pagado usando este método específico dentro de la transacción';
+
+create table pagos.factura (
+	id SERIAL not null,
+	id_pagos int not null,
+	numero_recibo varchar(50) not null,
+	fecha_emision timestamp not null,
+	total decimal(10,2) not null,
+	descripcion varchar(255),
+	primary key (id),
+	constraint fk_pagos_factura foreign key (id_pagos)
+	references pagos.pagos (id)
+);
+
+comment on table pagos.factura is 'Almacena el documento contable o recibo formal que legaliza el cobro de los servicios prestados';
+comment on column pagos.factura.id is 'Identificador único y numérico de la factura (Llave primaria)';
+comment on column pagos.factura.id_pagos is 'Llave foránea que vincula la factura con la transacción de pago realizada';
+comment on column pagos.factura.numero_recibo is 'Código o numeración de control fiscal consecutiva para la facturación';
+comment on column pagos.factura.fecha_emision is 'Fecha y hora en la que se generó y emitió el comprobante fiscal';
+comment on column pagos.factura.total is 'Monto económico total liquidado y facturado por el servicio';
+comment on column pagos.factura.descripcion is 'Detalle o concepto general del cobro registrado en el documento';
+
+create table pagos.estado_pago (
+	id SERIAL not null,
+	id_pagos int not null,
+	nombre_estado varchar(50),
+	primary key(id),
+	constraint fk_pagos_estado_pago foreign key (id_pagos)
+	references pagos.pagos (id)
+);
+
+comment on table pagos.estado_pago is 'Define las diferentes situaciones o respuestas administrativas en las que puede quedar una transacción de dinero';
+comment on column pagos.estado_pago.id is 'Identificador único de cada estado de pago (Llave primaria)';
+comment on column pagos.estado_pago.id_pagos is 'Llave foránea que vincula este control directamente al registro de pagos';
+comment on column pagos.estado_pago.nombre_estado is 'Nombre descriptivo de la situación del cobro (ej. Aprobado, Rechazado, Pendiente, Reversado)';
+
+create table pagos.cuenta_factura (
+	id_cuenta int not null,
+	id_factura int not null,
+	primary key (id_cuenta, id_factura),
+	constraint fk_factura_cuenta_factura foreign key(id_factura)
+	references pagos.factura (id),
+	constraint fk_cuenta_cuenta_factura foreign key (id_cuenta)
+	references login.cuenta (id)
+);
+
+comment on table pagos.cuenta_factura is 'Esta tabla asocia formalmente las facturas emitidas con la cuenta de perfil de datos personales del usuario';
+comment on column pagos.cuenta_factura.id_cuenta is 'Identificador de la cuenta de perfil del cliente que asume el cobro (Llave foránea / Primaria compuesta)';
+comment on column pagos.cuenta_factura.id_factura is 'Identificador de la factura legalizada (Llave foránea / Primaria compuesta)';
 
 
 -- ============================================================

@@ -141,7 +141,7 @@ CREATE TABLE vehiculo.estado_vehiculo (
 
 comment on table vehiculo.estado_vehiculo is 'Define los estados administrativos u operativos en los que puede estar registrado un vehículo';
 comment on column vehiculo.estado_vehiculo.id is 'Identificador único de cada estado de vehículo (Llave primaria)';
-comment on column vehiculo.estado_vehiculo.nombre_estado_vehiculo is 'Nombre descriptivo del estado (ej. Activo, Inactivo, Reportado, En Parqueadero)';
+comment on column vehiculo.estado_vehiculo.nombre_estado_vehiculo is 'Nombre descriptivo del estado (ej. Activo, Inactivo, Reportado, En Parqueadero)';.
 
 CREATE TABLE vehiculo.vehiculo (
     id                  SERIAL,

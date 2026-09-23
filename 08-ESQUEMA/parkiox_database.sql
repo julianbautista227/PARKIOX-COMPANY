@@ -1010,7 +1010,7 @@ where id_usuario = (select id from login.usuario where email = 'luisdavid@gmail.
 
 -- ---------- 8.2 VEHICULO ----------
 DELETE FROM vehiculo.cuenta_vehiculo
-WHERE id_cuenta = 1 AND id_vehiculo = 1;.
+WHERE id_cuenta = 1 AND id_vehiculo = 1;
 
 -- ---------- 8.3 PARQUEADERO ----------
 DELETE FROM parqueadero.foto_espacio

@@ -94,3 +94,5 @@ create table login.cuenta (
 
 comment on table login.cuenta is 'Información personal / perfil del usuario, en relación 1:1 con usuario';
 comment on column login.cuenta.imagen_perfil is 'Ruta o URL de la imagen de perfil';
+
+Finally. 

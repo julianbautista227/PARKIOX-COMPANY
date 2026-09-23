@@ -39,6 +39,11 @@
       "email": "julian@gmail.com",
       "password": "$2a$10$/QcCb7syki6yddFAOIUGkuK4qMk9AZmOajrMpOIbxgUtkmcnkx7Ia",
       "id": 8
+    },
+    {
+      "email": "profe@gmail.com",
+      "password": "$2a$10$8F/R8ut3GIo7hpFRDCPua.SUz.AiEM4w/w08AGmsPbXloyWNEHibC",
+      "id": 9
     }
   ],
   "tipo-documentos": [
@@ -100,6 +105,10 @@
     {
       "nombre": "daviplata ",
       "id": 5
+    },
+    {
+      "nombre": "ccc",
+      "id": 6
     }
   ],
   "estados-reserva": [
@@ -112,7 +121,7 @@
       "id": 3
     },
     {
-      "nombre_estado": "Cancelada",
+      "nombre_estado": "Canceladaaaa",
       "id": 1
     }
   ]

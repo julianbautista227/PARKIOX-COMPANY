@@ -130,7 +130,7 @@ CREATE TABLE vehiculo.tipo (
 
 comment on table vehiculo.tipo is 'Catálogo que clasifica la clase o tipo de vehículo que ingresa al parqueadero';
 comment on column vehiculo.tipo.id is 'Identificador único de la categoría (Llave primaria)';
-comment on column vehiculo.tipo.nombre is 'Nombre descriptivo de la categoría (ej. Carro, Moto, Camioneta, Bicicleta)';
+comment on column vehiculo.tipo.nombre is 'Nombre descriptivo de la categoría (ej. Carro, Moto, Camioneta, Bicicleta)';.
 
 CREATE TABLE vehiculo.estado_vehiculo (
     id                      SERIAL,

@@ -181,7 +181,7 @@ comment on column vehiculo.cuenta_vehiculo.id_vehiculo is 'Identificador único 
 comment on column vehiculo.cuenta_vehiculo.color is 'Color exterior actual del automotor registrado';
 comment on column vehiculo.cuenta_vehiculo.fecha_registro is 'Fecha y hora exacta en la que se creó este vínculo o asociación en la plataforma';
 comment on column vehiculo.cuenta_vehiculo.url_foto is 'Ruta de la imagen o fotografía del vehículo en el sistema';
-comment on column vehiculo.cuenta_vehiculo.url_tarjeta_propiedad is 'Ruta del archivo o enlace al documento digital de la tarjeta de propiedad del vehículo';.
+comment on column vehiculo.cuenta_vehiculo.url_tarjeta_propiedad is 'Ruta del archivo o enlace al documento digital de la tarjeta de propiedad del vehículo';
 
 
 -- ---------- 3.3 PARQUEADERO — NÚCLEO ----------

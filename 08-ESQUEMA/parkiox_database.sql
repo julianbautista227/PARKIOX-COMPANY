@@ -687,7 +687,7 @@ INSERT INTO vehiculo.vehiculo (id_tipo, id_estado_vehiculo, placa, marca, modelo
 VALUES (1, 1, 'ABC123', 'Mazda', '3');
 
 INSERT INTO vehiculo.cuenta_vehiculo (id_cuenta, id_vehiculo, color, url_foto, fecha_registro)
-VALUES (1, 1, 'Gris', 'https://parkiox.com/fotos/vehiculos/abc123.jpg', current_timestamp);.
+VALUES (1, 1, 'Gris', 'https://parkiox.com/fotos/vehiculos/abc123.jpg', current_timestamp);
 
 
 -- ---------- 4.3 PARQUEADERO ----------

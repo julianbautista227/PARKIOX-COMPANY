@@ -890,7 +890,7 @@ SELECT
     ev.nombre_estado_vehiculo AS estado
 FROM vehiculo.vehiculo v
 INNER JOIN vehiculo.tipo t ON v.id_tipo = t.id
-INNER JOIN vehiculo.estado_vehiculo ev ON v.id_estado_vehiculo = ev.id;
+INNER JOIN vehiculo.estado_vehiculo ev ON v.id_estado_vehiculo = ev.id;.
 
 -- ---------- 6.3 PARQUEADERO ----------
 -- Esta consulta relaciona un registro de entrada y salida con el espacio,

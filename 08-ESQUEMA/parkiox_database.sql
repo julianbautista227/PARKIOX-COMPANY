@@ -966,7 +966,7 @@ SELECT id, placa, marca, modelo
 FROM vehiculo.vehiculo
 WHERE id_estado_vehiculo = (
     SELECT id_estado_vehiculo FROM vehiculo.vehiculo WHERE placa = 'ABC123'
-);
+);.
 
 -- ---------- 7.3 PARQUEADERO ----------
 -- Esta subconsulta identifica los sitios que tienen tarifas superiores al

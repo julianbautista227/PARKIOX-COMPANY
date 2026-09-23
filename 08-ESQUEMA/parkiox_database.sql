@@ -14,7 +14,7 @@ DROP SCHEMA IF EXISTS pagos CASCADE;
 -- 2. CREATE SCHEMAS
 -- ============================================================
 CREATE SCHEMA login;
-CREATE SCHEMA vehiculo;
+CREATE SCHEMA vehiculo;.
 CREATE SCHEMA parqueadero;
 CREATE SCHEMA reservas;
 CREATE SCHEMA favoritos;

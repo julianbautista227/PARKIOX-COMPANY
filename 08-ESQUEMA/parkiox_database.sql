@@ -161,7 +161,7 @@ comment on column vehiculo.vehiculo.id is 'Identificador único y numérico del 
 comment on column vehiculo.vehiculo.id_tipo is 'Llave foránea que define la categoría del automotor (conecta con la tabla tipo)';
 comment on column vehiculo.vehiculo.id_estado_vehiculo is 'Llave foránea que indica la situación actual del carro o moto (conecta con estado_vehiculo)';
 comment on column vehiculo.vehiculo.placa is 'Matrícula o caracteres únicos de identificación del vehículo (propiedad única)';
-comment on table vehiculo.vehiculo is 'La relación con el dueño (cuenta) se maneja exclusivamente a través de vehiculo.cuenta_vehiculo, para no duplicar la relación en dos lugares';.
+comment on table vehiculo.vehiculo is 'La relación con el dueño (cuenta) se maneja exclusivamente a través de vehiculo.cuenta_vehiculo, para no duplicar la relación en dos lugares';
 
 CREATE TABLE vehiculo.cuenta_vehiculo (
     id_cuenta               INTEGER NOT NULL,
